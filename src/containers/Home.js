@@ -1,22 +1,19 @@
 import useFetchVideos from '../hooks/useFetchVideos';
 import '../assets/styles/App.scss';
-import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
 import Categories from '../components/Categories';
 import Carousel from '../components/Carousel';
 import CarouselItem from '../components/CarouselItem';
-import Footer from '../components/Footer';
 
 const API = 'http://localhost:3001/initialState';
 
-const App = () => {
+const Home = () => {
   const videos = useFetchVideos(API);
 
   const initialState = videos;
 
   return (
-    <div className='App'>
-      <Header />
+    <>
       <SearchBar />
 
       {initialState.mylist.length > 0 && (
@@ -44,10 +41,8 @@ const App = () => {
           ))}
         </Carousel>
       </Categories>
-
-      <Footer />
-    </div>
+    </>
   );
 };
 
-export default App;
+export default Home;

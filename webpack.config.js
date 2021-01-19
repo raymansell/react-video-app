@@ -53,6 +53,7 @@ module.exports = {
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
     compress: true,
+    historyApiFallback: true,
     port: 3000,
   },
   devtool: 'source-map',
