@@ -8,7 +8,7 @@ import App from './routes/App';
 const initialState = {
   user: {},
   playing: {},
-  mylist: [],
+  myList: [],
   trends: [
     {
       id: 2,
@@ -171,7 +171,11 @@ const initialState = {
   ],
 };
 
-const store = createStore(reducer, initialState);
+const store = createStore(
+  reducer,
+  initialState,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 ReactDOM.render(
   <React.StrictMode>

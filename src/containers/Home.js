@@ -1,26 +1,33 @@
-import useFetchVideos from '../hooks/useFetchVideos';
 import '../assets/styles/App.scss';
+import { useSelector } from 'react-redux';
 import SearchBar from '../components/SearchBar';
 import Categories from '../components/Categories';
 import Carousel from '../components/Carousel';
 import CarouselItem from '../components/CarouselItem';
+// import useFetchVideos from '../hooks/useFetchVideos';
 
-const API = 'http://localhost:3001/initialState';
+// const API = 'http://localhost:3001/initialState';
 
 const Home = () => {
-  const videos = useFetchVideos(API);
+  // const videos = useFetchVideos(API);
 
-  const initialState = videos;
+  // const initialState = videos;
+
+  const { myList, trends, originals } = useSelector(
+    ({ myList, trends, originals }) => {
+      return { myList, trends, originals };
+    }
+  );
 
   return (
     <>
       <SearchBar />
 
-      {initialState.mylist.length > 0 && (
+      {myList.length > 0 && (
         <Categories title='Mi lista'>
           <Carousel>
-            {initialState.mylist.map((item) => (
-              <CarouselItem key={item.id} {...item} />
+            {myList.map((item) => (
+              <CarouselItem key={item.id} {...item} isList />
             ))}
           </Carousel>
         </Categories>
@@ -28,7 +35,7 @@ const Home = () => {
 
       <Categories title='Tendencias'>
         <Carousel>
-          {initialState.trends.map((item) => (
+          {trends.map((item) => (
             <CarouselItem key={item.id} {...item} />
           ))}
         </Carousel>
@@ -36,7 +43,7 @@ const Home = () => {
 
       <Categories title='Originales de Platzi Video'>
         <Carousel>
-          {initialState.originals.map((item) => (
+          {originals.map((item) => (
             <CarouselItem key={item.id} {...item} />
           ))}
         </Carousel>
