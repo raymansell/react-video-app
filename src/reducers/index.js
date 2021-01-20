@@ -14,6 +14,24 @@ const reducer = (state, action) => {
         myList: state.myList.filter((video) => video.id !== action.payload.id),
       };
     }
+    case 'LOGIN_REQUEST': {
+      return {
+        ...state,
+        user: action.payload.user,
+      };
+    }
+    case 'LOGOUT_REQUEST': {
+      return {
+        ...state,
+        user: {},
+      };
+    }
+    case 'REGISTER_REQUEST': {
+      return {
+        ...state,
+        user: action.payload.newUser,
+      };
+    }
     default:
       return state;
   }
